@@ -1,7 +1,9 @@
-# chrome-jenkins-relative-links
-Display web-accessible links in Jenkins jobs console
-
+![chrome-jenkins-relative-links logo](app/images/icon-48.png)   chrome-jenkins-relative-links
 ========================
+
+[![Available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png)](https://chrome.google.com/webstore/detail/mhdpelbikeadhkopckfnfofkghioembf)
+---------
+Display web-accessible links in Jenkins jobs console.
 
 Without this extension, links in a Jenkins job console would point to local files inside the CI node workspace.
 ![Before](raw/screenshot_before.png)
