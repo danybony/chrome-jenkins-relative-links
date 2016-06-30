@@ -10,9 +10,25 @@
   "default_locale": "en",
   "background": {
     "scripts": [
-      "scripts/chromereload.js",
-      "scripts/background.js"
+      "scripts.babel/chromereload.js",
+      "scripts.babel/background.js"
     ]
   },
-  "permissions": []
+  "permissions": [
+    "webNavigation",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*/job/*/console",
+        "https://*/*/job/*/console"
+      ],
+      "js": [
+        "scripts.babel/contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ]
 }
