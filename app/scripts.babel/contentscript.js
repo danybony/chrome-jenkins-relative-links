@@ -43,20 +43,6 @@ function replaceLink(link) {
     link.text = newHref
 }
 
-var init = function() {
-  prToolbarHeight = getPrToolbarHeight();
-  if (fileContainers.length !== 0) {
-    resetAllHeaders();
-    setFileContainersPadding();
-    addCollapseExpandButtons();
-    addCollapseExpandAllButtons();
-    document.onscroll = makeCurrentHeaderSticky;
-  } else {
-    // remove onscroll listener if no file is present in the current page
-    document.onscroll = null;
-  }
-};
-
 chrome.runtime.onMessage.addListener(
   function(request) {
     if (request.type === 'init' && document.getElementsByClassName('console-output')[0]) {
