@@ -20,7 +20,9 @@ function isNumeric(n) {
 // The current Jenkins Job in the form of 
 // http://www.your.ci/view/All/job/jobname
 function getJobUrl() { 
-  var i = document.URL.length - '/console'.length -1
+  var pathElements = document.URL.split('/')
+  var lastElementLength = pathElements[pathElements.length - 1].length
+  var i = document.URL.length - lastElementLength - 2
   while (isNumeric(document.URL[i])) {
       i--
   }
