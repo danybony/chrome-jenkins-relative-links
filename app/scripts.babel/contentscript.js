@@ -1,18 +1,5 @@
 'use strict';
 
-function isLocalUrl(url) {
-  return url.getAttribute('href') && url.getAttribute('href').startsWith('file://')
-}
-
-function arrayOf(nodelist) {
-  var result = [];
-  for (var i = 0; i < nodelist.length; ++i) {
-    result.push(nodelist.item(i))
-  }
-
-  return result;
-}
-
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -28,22 +15,34 @@ function getJobUrl() {
   }
   return document.URL.substring(0, i)
 }
+var jobUrl = getJobUrl()
 
 function getJobName(jobUrl) { 
   var pathElements = jobUrl.split('/')
   return pathElements[pathElements.length - 1]
 }
+var jobName = getJobName(jobUrl)
 
 function replaceLink(link) {
-  console.log(link)
-  var jobUrl = getJobUrl()
-  var jobName = getJobName(jobUrl)
   var oldHref = link.href
   var pathInWorkspace = oldHref.substring(oldHref.indexOf('workspace/' + jobName) + ('workspace/' + jobName).length)
 
-  var newHref = getJobUrl() + '/ws' + pathInWorkspace
+  var newHref = jobUrl + '/ws' + pathInWorkspace
   link.href = newHref
   link.text = newHref
+}
+
+function isLocalUrl(url) {
+  return url.getAttribute('href') && url.getAttribute('href').startsWith('file://')
+}
+
+function arrayOf(nodelist) {
+  var result = [];
+  for (var i = 0; i < nodelist.length; ++i) {
+    result.push(nodelist.item(i))
+  }
+
+  return result;
 }
 
 chrome.runtime.onMessage.addListener(
