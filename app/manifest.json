@@ -21,8 +21,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*job/*/console",
-        "https://*/*job/*/console"
+        "http://*/*job/*/console*",
+        "https://*/*job/*/console*"
       ],
       "js": [
         "scripts.babel/contentscript.js"
