@@ -1,7 +1,7 @@
 'use strict';
 
 function isLocalUrl(url) {
-    return url.getAttribute('href') && url.getAttribute('href').startsWith('file://')
+  return url.getAttribute('href') && url.getAttribute('href').startsWith('file://')
 }
 
 function arrayOf(nodelist) {
@@ -20,27 +20,28 @@ function isNumeric(n) {
 // The current Jenkins Job in the form of 
 // http://www.your.ci/view/All/job/jobname
 function getJobUrl() { 
-    var i = document.URL.length - '/console'.length -1
-    while (isNumeric(document.URL[i])) {
-        i--
-    }
-    return document.URL.substring(0, i)
+  var i = document.URL.length - '/console'.length -1
+  while (isNumeric(document.URL[i])) {
+      i--
+  }
+  return document.URL.substring(0, i)
 }
 
 function getJobName(jobUrl) { 
-    var pathElements = jobUrl.split('/')
-    return pathElements[pathElements.length - 1]
+  var pathElements = jobUrl.split('/')
+  return pathElements[pathElements.length - 1]
 }
 
 function replaceLink(link) {
-    var jobUrl = getJobUrl()
-    var jobName = getJobName(jobUrl)
-    var oldHref = link.href
-    var pathInWorkspace = oldHref.substring(oldHref.indexOf('workspace/' + jobName) + ('workspace/' + jobName).length)
+  console.log(link)
+  var jobUrl = getJobUrl()
+  var jobName = getJobName(jobUrl)
+  var oldHref = link.href
+  var pathInWorkspace = oldHref.substring(oldHref.indexOf('workspace/' + jobName) + ('workspace/' + jobName).length)
 
-    var newHref = getJobUrl() + '/ws' + pathInWorkspace
-    link.href = newHref
-    link.text = newHref
+  var newHref = getJobUrl() + '/ws' + pathInWorkspace
+  link.href = newHref
+  link.text = newHref
 }
 
 chrome.runtime.onMessage.addListener(
